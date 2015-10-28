@@ -7,6 +7,41 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button Content="Get" Click="Button_Click"></Button>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ListBox Grid.Row="0" ItemsSource="{Binding Todos}" SelectedItem="{Binding Ausgewählt}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Erledigt}" Value="True">
+                                        <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Dirty}" Value="True">
+                                        <Setter Property="FontStyle" Value="Italic"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Row="1">
+            
+            <Button Content="Neu" Command="{Binding Neu}" />
+            <Button Content="Speichern" Command="{Binding Speichern}" />
+
+            <TextBlock Text="Id"/>
+            <TextBox IsReadOnly="True" Text="{Binding Ausgewählt.Id}"/>
+            <TextBlock Text="Beschreibung"/>
+            <TextBox Text="{Binding Ausgewählt.Name}"/>
+            <CheckBox Content="Erledigt" IsChecked="{Binding Ausgewählt.Erledigt}"/>
+            
+        </StackPanel>
     </Grid>
 </Window>

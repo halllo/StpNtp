@@ -78,6 +78,10 @@
     <Compile Include="Migrations\201510281648464_InitialCreate.Designer.cs">
       <DependentUpon>201510281648464_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510281813063_requiredadded.cs" />
+    <Compile Include="Migrations\201510281813063_requiredadded.Designer.cs">
+      <DependentUpon>201510281813063_requiredadded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Todo.cs" />
@@ -100,6 +104,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201510281648464_InitialCreate.resx">
       <DependentUpon>201510281648464_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510281813063_requiredadded.resx">
+      <DependentUpon>201510281813063_requiredadded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

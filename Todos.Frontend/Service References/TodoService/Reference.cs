@@ -101,10 +101,10 @@ namespace TodosFrontend.TodoService {
         System.Threading.Tasks.Task<TodosFrontend.TodoService.Todo[]> AllAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/TodoService/Speichern", ReplyAction="http://tempuri.org/TodoService/SpeichernResponse")]
-        void Speichern(TodosFrontend.TodoService.Todo todo);
+        void Speichern(TodosFrontend.TodoService.Todo[] todos);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/TodoService/Speichern", ReplyAction="http://tempuri.org/TodoService/SpeichernResponse")]
-        System.Threading.Tasks.Task SpeichernAsync(TodosFrontend.TodoService.Todo todo);
+        System.Threading.Tasks.Task SpeichernAsync(TodosFrontend.TodoService.Todo[] todos);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -142,12 +142,12 @@ namespace TodosFrontend.TodoService {
             return base.Channel.AllAsync();
         }
         
-        public void Speichern(TodosFrontend.TodoService.Todo todo) {
-            base.Channel.Speichern(todo);
+        public void Speichern(TodosFrontend.TodoService.Todo[] todos) {
+            base.Channel.Speichern(todos);
         }
         
-        public System.Threading.Tasks.Task SpeichernAsync(TodosFrontend.TodoService.Todo todo) {
-            return base.Channel.SpeichernAsync(todo);
+        public System.Threading.Tasks.Task SpeichernAsync(TodosFrontend.TodoService.Todo[] todos) {
+            return base.Channel.SpeichernAsync(todos);
         }
     }
 }

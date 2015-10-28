@@ -23,14 +23,10 @@ namespace TodosFrontend
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = ViewModel = new MainWindowModel();
+            ViewModel.FehlerEvent += () => MessageBox.Show(this, "Fehler", "Fehler", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK, MessageBoxOptions.None);
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var todosService = new TodoService.TodoServiceClient();
-            var todos = await todosService.AllAsync();
-
-            MessageBox.Show(string.Join("\n", todos.Select(t => t.Name)), "Todos");
-        }
+        MainWindowModel ViewModel { get; set; }
     }
 }

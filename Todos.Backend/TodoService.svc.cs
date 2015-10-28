@@ -20,11 +20,15 @@ namespace TodosBackend
         }
 
         [OperationContract]
-        public void Speichern(Todo todo)
+        public void Speichern(List<Todo> todos)
         {
             using (var ctx = new TodoContext())
             {
-                ctx.Todos.Add(todo);
+                foreach (var todo in todos)
+                {
+                    var entity = ctx.Entry(todo);
+                    entity.State = todo.Id == 0 ? System.Data.Entity.EntityState.Added : System.Data.Entity.EntityState.Modified;
+                }
                 ctx.SaveChanges();
             }
         }
