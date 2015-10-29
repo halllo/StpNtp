@@ -67,6 +67,7 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                     <StackPanel Grid.Row="1">
+						<Button Content="PDF" Command="{Binding Pdf}"/>
                         <TextBlock Text="Name"/>
                         <TextBox Text="{Binding Bestellung.Name}" IsReadOnly="True"/>
                         <TextBlock Text="Preis"/>

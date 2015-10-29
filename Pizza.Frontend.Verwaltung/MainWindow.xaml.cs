@@ -1,4 +1,7 @@
-﻿using System;
+﻿using PdfSharp.Drawing;
+using PdfSharp.Drawing.Layout;
+using PdfSharp.Pdf;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -66,6 +69,30 @@ namespace Pizza.Frontend.Verwaltung
 				pizzaService.Speichern(Ausgewählt.AsEntity());
 			});
 
+			Pdf = new Command(() =>
+			{
+				if (Bestellung == null) return;
+				
+				var dateiname = Bestellung.Name + ".pdf";
+				var dateinhalt = "Bestellung von " + Bestellung.Name 
+					+ " vom " + Bestellung.Datum 
+					+ " in Höhe " + Bestellung.Gesamtpreis.ToString("C") + "\r\n\r\n"
+					+ string.Join("\r\n", Bestellung.Pizzen.Select(p => " - " + p));
+
+				var document = new PdfDocument();
+				document.Info.Title = "Created with PDFsharp";
+				var page = document.AddPage();
+				var gfx = XGraphics.FromPdfPage(page);
+				var font = new XFont("Verdana", 15, XFontStyle.Regular);
+				var tf = new XTextFormatter(gfx);
+				tf.DrawString(dateinhalt, font, XBrushes.Black, new XRect(40, 100, page.Width-40, page.Height-100), XStringFormats.TopLeft);
+
+
+				document.Save(dateiname);
+
+				System.Diagnostics.Process.Start(dateiname);
+			});
+
 			Neuladen.Execute(null);
 		}
 
@@ -99,6 +126,8 @@ namespace Pizza.Frontend.Verwaltung
 		}
 
 		public Command Neuladen { get; set; }
+
+		public Command Pdf { get; set; }
 
 		string _Name;
 		public string Name { get { return _Name; } set { _Name = value; NotifyChanged(); } }
@@ -174,7 +203,7 @@ namespace Pizza.Frontend.Verwaltung
 			Datum = bestellung.Datum;
 			Name = bestellung.Besteller;
 			Gesamtpreis = bestellung.Pizzen.Sum(p => p.Pizza.Preis);
-			Pizzen = bestellung.Pizzen.Select(p => p.Pizza.Name).ToList();
+			Pizzen = bestellung.Pizzen.Select(p => p.Pizza.Name + " (" + p.Pizza.Preis.ToString("C") + ")").OrderBy(p => p).ToList();
 		}
 	}
 
