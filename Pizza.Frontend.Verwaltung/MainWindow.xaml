@@ -1,0 +1,46 @@
+﻿<Window x:Class="Pizza.Frontend.Verwaltung.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pizza.Frontend.Verwaltung"
+        mc:Ignorable="d"
+        Title="Verwaltung" Height="700" Width="1024">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+			<RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Button Content="neuladen" Command="{Binding Neuladen}"/>
+
+        <ListBox ItemsSource="{Binding Pizzen}" SelectedItem="{Binding Ausgewählt}" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"/>
+                            <TextBlock Text="Preis:" Margin="10,0,3,0" FontSize="30" />
+                            <TextBlock Text="{Binding Preis}" FontSize="30" />
+                            <TextBlock Text="€" FontSize="30" />
+                        </StackPanel>
+                        <TextBlock Text="Zutaten" Margin="0,5,0,0"/>
+                        <ListBox IsHitTestVisible="False" ItemsSource="{Binding Zutaten}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Grid.Row="2">
+            <Button Content="Neu" Command="{Binding Neu}"/>
+            <Button Content="Speichern" Command="{Binding Speichern}"/>
+            <TextBlock Text="Name"/>
+            <TextBox Text="{Binding Name}"/>
+            <TextBlock Text="Preis"/>
+            <TextBox Text="{Binding Preis}"/>
+            <TextBlock Text="Zutaten"/>
+            <TextBox Text="{Binding Zutaten}" AcceptsReturn="True" />
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,40 @@
+﻿<Window x:Class="Pizza.Frontend.Kunde.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pizza.Frontend.Kunde"
+        mc:Ignorable="d"
+        Title="Kunde" Height="700" Width="1024">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Button Content="neuladen" Command="{Binding Neuladen}"/>
+
+        <ListBox ItemsSource="{Binding Pizzen}" SelectedItem="{Binding Ausgewählt}" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" FontSize="30"/>
+                        <TextBlock Text="Preis:" Margin="10,0,3,0" VerticalAlignment="Bottom"/>
+                        <TextBlock Text="{Binding Preis}" VerticalAlignment="Bottom"/>
+                        <TextBlock Text="€" VerticalAlignment="Bottom"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Grid.Row="2">
+            <TextBlock Text="Name"/>
+            <TextBox Text="{Binding Ausgewählt.Name}" IsReadOnly="True"/>
+            <TextBlock Text="Preis"/>
+            <TextBox Text="{Binding Ausgewählt.Preis}" IsReadOnly="True"/>
+            <TextBlock Text="Zutaten"/>
+            <ListBox IsHitTestVisible="False" ItemsSource="{Binding Ausgewählt.Zutaten}"/>
+        </StackPanel>
+    </Grid>
+</Window>

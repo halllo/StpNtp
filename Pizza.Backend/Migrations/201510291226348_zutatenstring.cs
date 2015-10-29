@@ -1,0 +1,18 @@
+namespace Pizza.Backend.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class zutatenstring : DbMigration
+    {
+        public override void Up()
+        {
+            AddColumn("dbo.PizzaEntities", "Zutaten", c => c.String());
+        }
+        
+        public override void Down()
+        {
+            DropColumn("dbo.PizzaEntities", "Zutaten");
+        }
+    }
+}
