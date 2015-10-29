@@ -10,6 +10,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todos.Frontend", "Todos.Fro
 		{440287FC-DB6B-4121-AFF6-DAAD99B0D976} = {440287FC-DB6B-4121-AFF6-DAAD99B0D976}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todos.FrontendJOP", "Todos.FrontendJOP\Todos.FrontendJOP.csproj", "{EF3990AB-E36A-41B3-8A12-F7A538FB608C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{440287FC-DB6B-4121-AFF6-DAAD99B0D976} = {440287FC-DB6B-4121-AFF6-DAAD99B0D976}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +29,10 @@ Global
 		{A814CA19-6BDA-49C2-8ABF-FD290A9499F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A814CA19-6BDA-49C2-8ABF-FD290A9499F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A814CA19-6BDA-49C2-8ABF-FD290A9499F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF3990AB-E36A-41B3-8A12-F7A538FB608C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF3990AB-E36A-41B3-8A12-F7A538FB608C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF3990AB-E36A-41B3-8A12-F7A538FB608C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF3990AB-E36A-41B3-8A12-F7A538FB608C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
