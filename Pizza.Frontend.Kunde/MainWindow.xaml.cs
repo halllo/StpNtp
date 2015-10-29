@@ -35,23 +35,67 @@ namespace Pizza.Frontend.Kunde
 		public MainWindowModel()
 		{
 			var pizzaService = new PizzaService.PizzaServiceClient();
-			
+
 			Neuladen = new Command(() =>
 			{
-				Pizzen = new ObservableCollection<PizzaViewModel>(pizzaService.Alle().Select(p => new PizzaViewModel(p)));
+				Pizzen = new ObservableCollection<PizzaViewModel>(pizzaService.Pizzen().Select(p => new PizzaViewModel(p)));
 				NotifyChanged("Pizzen");
 				Ausgewählt = null;
+
+				var bestellungen = pizzaService.Bestellungen(von: BestellerName);
+                Bestellungen = new ObservableCollection<BestellungViewModel>(bestellungen.Select(b => new BestellungViewModel(b)));
+				NotifyChanged("Bestellungen");
 			});
+
+			Bestellen = new Command(() =>
+			{
+				if (Ausgewählt != null)
+				{
+					Warenkorb.Add(new WarenkorbPizzaViewModel(Ausgewählt));
+				}
+			});
+
+			Abschicken = new Command(() =>
+			{
+				if (string.IsNullOrWhiteSpace(BestellerName) == false && Warenkorb.Any())
+				{
+					pizzaService.Bestellen(BestellerName, Warenkorb.Select(p => p.Pizza.AsEntity()).ToArray());
+
+					Neuladen.Execute(null);
+					
+					Warenkorb.Clear();
+				}
+			});
+
+			Warenkorb = new ObservableCollection<WarenkorbPizzaViewModel>();
+			Warenkorb.CollectionChanged += (s, e) => NotifyChanged("WarenkorbGesamtpreis");
 
 			Neuladen.Execute(null);
 		}
+
+		public Command Neuladen { get; set; }
+
 
 		public ObservableCollection<PizzaViewModel> Pizzen { get; set; }
 
 		PizzaViewModel _Ausgewählt;
 		public PizzaViewModel Ausgewählt { get { return _Ausgewählt; } set { _Ausgewählt = value; NotifyChanged(); } }
 
-		public Command Neuladen { get; set; }
+		public Command Bestellen { get; set; }
+
+
+		public ObservableCollection<WarenkorbPizzaViewModel> Warenkorb { get; set; }
+
+		public decimal WarenkorbGesamtpreis { get { return Warenkorb.Sum(p => p.Pizza.Preis); } }
+
+		string _BestellerName;
+		public string BestellerName { get { return _BestellerName; } set { _BestellerName = value; NotifyChanged(); } }
+
+		public Command Abschicken { get; set; }
+
+
+		public ObservableCollection<BestellungViewModel> Bestellungen { get; set; }
+
 	}
 
 	public class PizzaViewModel : ViewModel
@@ -100,6 +144,30 @@ namespace Pizza.Frontend.Kunde
 		private static string Stringify(string[] s)
 		{
 			return string.Join("\n", s);
+		}
+	}
+
+	public class WarenkorbPizzaViewModel
+	{
+		public PizzaViewModel Pizza { get; set; }
+
+		public WarenkorbPizzaViewModel(PizzaViewModel pizza)
+		{
+			Pizza = pizza;
+		}
+	}
+
+	public class BestellungViewModel
+	{
+		public DateTime Datum { get; set; }
+		public string Name { get; set; }
+		public decimal Gesamtpreis { get; set; }
+
+		public BestellungViewModel(PizzaService.BestellungEntity bestellung)
+		{
+			Datum = bestellung.Datum;
+			Name = bestellung.Besteller;
+			Gesamtpreis = bestellung.Pizzen.Sum(p => p.Pizza.Preis);
 		}
 	}
 

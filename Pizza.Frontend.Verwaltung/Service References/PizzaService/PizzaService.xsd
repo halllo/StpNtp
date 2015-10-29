@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:27244/PizzaService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Pizza.Backend" />
-  <xs:element name="Alle">
+  <xs:element name="Pizzen">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="AlleResponse">
+  <xs:element name="PizzenResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Pizza.Backend" minOccurs="0" name="AlleResult" nillable="true" type="q1:ArrayOfPizzaEntity" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Pizza.Backend" minOccurs="0" name="PizzenResult" nillable="true" type="q1:ArrayOfPizzaEntity" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -23,6 +23,45 @@
   <xs:element name="SpeichernResponse">
     <xs:complexType>
       <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Bestellen">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="besteller" nillable="true" type="xs:string" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Pizza.Backend" minOccurs="0" name="pizzen" nillable="true" type="q3:ArrayOfPizzaEntity" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BestellenResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Bestellungen">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="von" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BestellungenResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Pizza.Backend" minOccurs="0" name="BestellungenResult" nillable="true" type="q4:ArrayOfBestellungEntity" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AlleBestellungen">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AlleBestellungenResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Pizza.Backend" minOccurs="0" name="AlleBestellungenResult" nillable="true" type="q5:ArrayOfBestellungEntity" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>

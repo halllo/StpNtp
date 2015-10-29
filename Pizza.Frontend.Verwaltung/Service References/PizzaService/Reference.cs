@@ -106,21 +106,161 @@ namespace Pizza.Frontend.Verwaltung.PizzaService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BestellungEntity", Namespace="http://schemas.datacontract.org/2004/07/Pizza.Backend")]
+    [System.SerializableAttribute()]
+    public partial class BestellungEntity : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BestellerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DatumField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Pizza.Frontend.Verwaltung.PizzaService.BestellungPositionEntity[] PizzenField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Besteller {
+            get {
+                return this.BestellerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BestellerField, value) != true)) {
+                    this.BestellerField = value;
+                    this.RaisePropertyChanged("Besteller");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Datum {
+            get {
+                return this.DatumField;
+            }
+            set {
+                if ((this.DatumField.Equals(value) != true)) {
+                    this.DatumField = value;
+                    this.RaisePropertyChanged("Datum");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Pizza.Frontend.Verwaltung.PizzaService.BestellungPositionEntity[] Pizzen {
+            get {
+                return this.PizzenField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PizzenField, value) != true)) {
+                    this.PizzenField = value;
+                    this.RaisePropertyChanged("Pizzen");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BestellungPositionEntity", Namespace="http://schemas.datacontract.org/2004/07/Pizza.Backend")]
+    [System.SerializableAttribute()]
+    public partial class BestellungPositionEntity : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Pizza.Frontend.Verwaltung.PizzaService.PizzaEntity PizzaField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Pizza.Frontend.Verwaltung.PizzaService.PizzaEntity Pizza {
+            get {
+                return this.PizzaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PizzaField, value) != true)) {
+                    this.PizzaField = value;
+                    this.RaisePropertyChanged("Pizza");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="PizzaService.PizzaService")]
     public interface PizzaService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PizzaService/Alle", ReplyAction="http://tempuri.org/PizzaService/AlleResponse")]
-        Pizza.Frontend.Verwaltung.PizzaService.PizzaEntity[] Alle();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PizzaService/Pizzen", ReplyAction="http://tempuri.org/PizzaService/PizzenResponse")]
+        Pizza.Frontend.Verwaltung.PizzaService.PizzaEntity[] Pizzen();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PizzaService/Alle", ReplyAction="http://tempuri.org/PizzaService/AlleResponse")]
-        System.Threading.Tasks.Task<Pizza.Frontend.Verwaltung.PizzaService.PizzaEntity[]> AlleAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PizzaService/Pizzen", ReplyAction="http://tempuri.org/PizzaService/PizzenResponse")]
+        System.Threading.Tasks.Task<Pizza.Frontend.Verwaltung.PizzaService.PizzaEntity[]> PizzenAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PizzaService/Speichern", ReplyAction="http://tempuri.org/PizzaService/SpeichernResponse")]
         void Speichern(Pizza.Frontend.Verwaltung.PizzaService.PizzaEntity pizza);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PizzaService/Speichern", ReplyAction="http://tempuri.org/PizzaService/SpeichernResponse")]
         System.Threading.Tasks.Task SpeichernAsync(Pizza.Frontend.Verwaltung.PizzaService.PizzaEntity pizza);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PizzaService/Bestellen", ReplyAction="http://tempuri.org/PizzaService/BestellenResponse")]
+        void Bestellen(string besteller, Pizza.Frontend.Verwaltung.PizzaService.PizzaEntity[] pizzen);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PizzaService/Bestellen", ReplyAction="http://tempuri.org/PizzaService/BestellenResponse")]
+        System.Threading.Tasks.Task BestellenAsync(string besteller, Pizza.Frontend.Verwaltung.PizzaService.PizzaEntity[] pizzen);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PizzaService/Bestellungen", ReplyAction="http://tempuri.org/PizzaService/BestellungenResponse")]
+        Pizza.Frontend.Verwaltung.PizzaService.BestellungEntity[] Bestellungen(string von);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PizzaService/Bestellungen", ReplyAction="http://tempuri.org/PizzaService/BestellungenResponse")]
+        System.Threading.Tasks.Task<Pizza.Frontend.Verwaltung.PizzaService.BestellungEntity[]> BestellungenAsync(string von);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PizzaService/AlleBestellungen", ReplyAction="http://tempuri.org/PizzaService/AlleBestellungenResponse")]
+        Pizza.Frontend.Verwaltung.PizzaService.BestellungEntity[] AlleBestellungen();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PizzaService/AlleBestellungen", ReplyAction="http://tempuri.org/PizzaService/AlleBestellungenResponse")]
+        System.Threading.Tasks.Task<Pizza.Frontend.Verwaltung.PizzaService.BestellungEntity[]> AlleBestellungenAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -150,12 +290,12 @@ namespace Pizza.Frontend.Verwaltung.PizzaService {
                 base(binding, remoteAddress) {
         }
         
-        public Pizza.Frontend.Verwaltung.PizzaService.PizzaEntity[] Alle() {
-            return base.Channel.Alle();
+        public Pizza.Frontend.Verwaltung.PizzaService.PizzaEntity[] Pizzen() {
+            return base.Channel.Pizzen();
         }
         
-        public System.Threading.Tasks.Task<Pizza.Frontend.Verwaltung.PizzaService.PizzaEntity[]> AlleAsync() {
-            return base.Channel.AlleAsync();
+        public System.Threading.Tasks.Task<Pizza.Frontend.Verwaltung.PizzaService.PizzaEntity[]> PizzenAsync() {
+            return base.Channel.PizzenAsync();
         }
         
         public void Speichern(Pizza.Frontend.Verwaltung.PizzaService.PizzaEntity pizza) {
@@ -164,6 +304,30 @@ namespace Pizza.Frontend.Verwaltung.PizzaService {
         
         public System.Threading.Tasks.Task SpeichernAsync(Pizza.Frontend.Verwaltung.PizzaService.PizzaEntity pizza) {
             return base.Channel.SpeichernAsync(pizza);
+        }
+        
+        public void Bestellen(string besteller, Pizza.Frontend.Verwaltung.PizzaService.PizzaEntity[] pizzen) {
+            base.Channel.Bestellen(besteller, pizzen);
+        }
+        
+        public System.Threading.Tasks.Task BestellenAsync(string besteller, Pizza.Frontend.Verwaltung.PizzaService.PizzaEntity[] pizzen) {
+            return base.Channel.BestellenAsync(besteller, pizzen);
+        }
+        
+        public Pizza.Frontend.Verwaltung.PizzaService.BestellungEntity[] Bestellungen(string von) {
+            return base.Channel.Bestellungen(von);
+        }
+        
+        public System.Threading.Tasks.Task<Pizza.Frontend.Verwaltung.PizzaService.BestellungEntity[]> BestellungenAsync(string von) {
+            return base.Channel.BestellungenAsync(von);
+        }
+        
+        public Pizza.Frontend.Verwaltung.PizzaService.BestellungEntity[] AlleBestellungen() {
+            return base.Channel.AlleBestellungen();
+        }
+        
+        public System.Threading.Tasks.Task<Pizza.Frontend.Verwaltung.PizzaService.BestellungEntity[]> AlleBestellungenAsync() {
+            return base.Channel.AlleBestellungenAsync();
         }
     }
 }

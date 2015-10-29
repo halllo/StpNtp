@@ -38,11 +38,12 @@ namespace Pizza.Frontend.Verwaltung
 
 			Neuladen = new Command(() =>
 			{
-				Pizzen = new ObservableCollection<PizzaViewModel>(pizzaService.Alle().Select(p => new PizzaViewModel(p)));
+				Pizzen = new ObservableCollection<PizzaViewModel>(pizzaService.Pizzen().Select(p => new PizzaViewModel(p)));
 				NotifyChanged("Pizzen");
-			});
 
-			Neuladen.Execute(null);
+				Bestellungen = new ObservableCollection<BestellungViewModel>(pizzaService.AlleBestellungen().Select(b => new BestellungViewModel(b)));
+				NotifyChanged("Bestellungen");
+			});
 
 			Neu = new Command(() =>
 			{
@@ -64,9 +65,16 @@ namespace Pizza.Frontend.Verwaltung
 
 				pizzaService.Speichern(Ausgewählt.AsEntity());
 			});
+
+			Neuladen.Execute(null);
 		}
 
 		public ObservableCollection<PizzaViewModel> Pizzen { get; set; }
+
+		public ObservableCollection<BestellungViewModel> Bestellungen { get; set; }
+
+		BestellungViewModel _Bestellung;
+		public BestellungViewModel Bestellung { get { return _Bestellung; } set { _Bestellung = value; NotifyChanged(); } }
 
 		PizzaViewModel _Ausgewählt;
 		public PizzaViewModel Ausgewählt
@@ -151,6 +159,22 @@ namespace Pizza.Frontend.Verwaltung
 		public static string Stringify(string[] s)
 		{
 			return string.Join("\n", s);
+		}
+	}
+
+	public class BestellungViewModel
+	{
+		public DateTime Datum { get; set; }
+		public string Name { get; set; }
+		public decimal Gesamtpreis { get; set; }
+		public List<string> Pizzen { get; set; }
+
+		public BestellungViewModel(PizzaService.BestellungEntity bestellung)
+		{
+			Datum = bestellung.Datum;
+			Name = bestellung.Besteller;
+			Gesamtpreis = bestellung.Pizzen.Sum(p => p.Pizza.Preis);
+			Pizzen = bestellung.Pizzen.Select(p => p.Pizza.Name).ToList();
 		}
 	}
 

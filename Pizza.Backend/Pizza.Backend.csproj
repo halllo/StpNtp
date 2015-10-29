@@ -82,6 +82,14 @@
     <Compile Include="Migrations\201510291226348_zutatenstring.Designer.cs">
       <DependentUpon>201510291226348_zutatenstring.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510291602003_bestellungen.cs" />
+    <Compile Include="Migrations\201510291602003_bestellungen.Designer.cs">
+      <DependentUpon>201510291602003_bestellungen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510291712504_bestelldatum.cs" />
+    <Compile Include="Migrations\201510291712504_bestelldatum.Designer.cs">
+      <DependentUpon>201510291712504_bestelldatum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PizzaService.svc.cs">
       <DependentUpon>PizzaService.svc</DependentUpon>
@@ -106,6 +114,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510291226348_zutatenstring.resx">
       <DependentUpon>201510291226348_zutatenstring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510291602003_bestellungen.resx">
+      <DependentUpon>201510291602003_bestellungen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510291712504_bestelldatum.resx">
+      <DependentUpon>201510291712504_bestelldatum.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

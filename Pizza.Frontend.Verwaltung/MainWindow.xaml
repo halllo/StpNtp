@@ -9,38 +9,73 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-			<RowDefinition/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Button Content="neuladen" Command="{Binding Neuladen}"/>
 
-        <ListBox ItemsSource="{Binding Pizzen}" SelectedItem="{Binding Ausgewählt}" Grid.Row="1">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"/>
-                            <TextBlock Text="Preis:" Margin="10,0,3,0" FontSize="30" />
-                            <TextBlock Text="{Binding Preis}" FontSize="30" />
-                            <TextBlock Text="€" FontSize="30" />
-                        </StackPanel>
-                        <TextBlock Text="Zutaten" Margin="0,5,0,0"/>
-                        <ListBox IsHitTestVisible="False" ItemsSource="{Binding Zutaten}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <TabControl Grid.Row="1">
 
-        <StackPanel Grid.Row="2">
-            <Button Content="Neu" Command="{Binding Neu}"/>
-            <Button Content="Speichern" Command="{Binding Speichern}"/>
-            <TextBlock Text="Name"/>
-            <TextBox Text="{Binding Name}"/>
-            <TextBlock Text="Preis"/>
-            <TextBox Text="{Binding Preis}"/>
-            <TextBlock Text="Zutaten"/>
-            <TextBox Text="{Binding Zutaten}" AcceptsReturn="True" />
-        </StackPanel>
+            <TabItem Header="Pizzen">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ListBox ItemsSource="{Binding Pizzen}" SelectedItem="{Binding Ausgewählt}" Grid.Row="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Name}" FontSize="25" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Preis, StringFormat=Preis: {0:C}}" Margin="10,0,0,0" FontSize="30"/>
+                                    </StackPanel>
+                                    <TextBlock Text="Zutaten" Margin="0,5,0,0"/>
+                                    <ListBox IsHitTestVisible="False" ItemsSource="{Binding Zutaten}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <StackPanel Grid.Row="1">
+                        <Button Content="Neu" Command="{Binding Neu}"/>
+                        <Button Content="Speichern" Command="{Binding Speichern}"/>
+                        <TextBlock Text="Name"/>
+                        <TextBox Text="{Binding Name}"/>
+                        <TextBlock Text="Preis"/>
+                        <TextBox Text="{Binding Preis}"/>
+                        <TextBlock Text="Zutaten"/>
+                        <TextBox Text="{Binding Zutaten}" AcceptsReturn="True" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Bestellungen">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ListBox ItemsSource="{Binding Bestellungen}" SelectedItem="{Binding Bestellung}" Grid.Row="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Datum, StringFormat=#{0}:}"/>
+                                    <TextBlock Text="{Binding Name, StringFormat=Bestellung von {0}}" Margin="3,0,0,0"/>
+                                    <TextBlock Text="{Binding Gesamtpreis, StringFormat=mit Gesamtpreis: {0:C}}" Margin="3,0,0,0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <StackPanel Grid.Row="1">
+                        <TextBlock Text="Name"/>
+                        <TextBox Text="{Binding Bestellung.Name}" IsReadOnly="True"/>
+                        <TextBlock Text="Preis"/>
+                        <TextBox Text="{Binding Bestellung.Gesamtpreis}" IsReadOnly="True"/>
+                        <TextBlock Text="Zutaten"/>
+                        <ListBox IsHitTestVisible="False" ItemsSource="{Binding Bestellung.Pizzen}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

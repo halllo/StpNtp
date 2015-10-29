@@ -15,4 +15,30 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="PizzaEntity" nillable="true" type="tns:PizzaEntity" />
+  <xs:complexType name="ArrayOfBestellungEntity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BestellungEntity" nillable="true" type="tns:BestellungEntity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBestellungEntity" nillable="true" type="tns:ArrayOfBestellungEntity" />
+  <xs:complexType name="BestellungEntity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Besteller" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Datum" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Pizzen" nillable="true" type="tns:ArrayOfBestellungPositionEntity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BestellungEntity" nillable="true" type="tns:BestellungEntity" />
+  <xs:complexType name="ArrayOfBestellungPositionEntity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BestellungPositionEntity" nillable="true" type="tns:BestellungPositionEntity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBestellungPositionEntity" nillable="true" type="tns:ArrayOfBestellungPositionEntity" />
+  <xs:complexType name="BestellungPositionEntity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Pizza" nillable="true" type="tns:PizzaEntity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BestellungPositionEntity" nillable="true" type="tns:BestellungPositionEntity" />
 </xs:schema>

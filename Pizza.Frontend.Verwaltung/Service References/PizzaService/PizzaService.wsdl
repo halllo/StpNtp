@@ -7,11 +7,11 @@
       <xsd:import schemaLocation="http://localhost:27244/PizzaService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Pizza.Backend" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="PizzaService_Alle_InputMessage">
-    <wsdl:part name="parameters" element="tns:Alle" />
+  <wsdl:message name="PizzaService_Pizzen_InputMessage">
+    <wsdl:part name="parameters" element="tns:Pizzen" />
   </wsdl:message>
-  <wsdl:message name="PizzaService_Alle_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AlleResponse" />
+  <wsdl:message name="PizzaService_Pizzen_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PizzenResponse" />
   </wsdl:message>
   <wsdl:message name="PizzaService_Speichern_InputMessage">
     <wsdl:part name="parameters" element="tns:Speichern" />
@@ -19,20 +19,50 @@
   <wsdl:message name="PizzaService_Speichern_OutputMessage">
     <wsdl:part name="parameters" element="tns:SpeichernResponse" />
   </wsdl:message>
+  <wsdl:message name="PizzaService_Bestellen_InputMessage">
+    <wsdl:part name="parameters" element="tns:Bestellen" />
+  </wsdl:message>
+  <wsdl:message name="PizzaService_Bestellen_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BestellenResponse" />
+  </wsdl:message>
+  <wsdl:message name="PizzaService_Bestellungen_InputMessage">
+    <wsdl:part name="parameters" element="tns:Bestellungen" />
+  </wsdl:message>
+  <wsdl:message name="PizzaService_Bestellungen_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BestellungenResponse" />
+  </wsdl:message>
+  <wsdl:message name="PizzaService_AlleBestellungen_InputMessage">
+    <wsdl:part name="parameters" element="tns:AlleBestellungen" />
+  </wsdl:message>
+  <wsdl:message name="PizzaService_AlleBestellungen_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AlleBestellungenResponse" />
+  </wsdl:message>
   <wsdl:portType name="PizzaService">
-    <wsdl:operation name="Alle">
-      <wsdl:input wsaw:Action="http://tempuri.org/PizzaService/Alle" message="tns:PizzaService_Alle_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/PizzaService/AlleResponse" message="tns:PizzaService_Alle_OutputMessage" />
+    <wsdl:operation name="Pizzen">
+      <wsdl:input wsaw:Action="http://tempuri.org/PizzaService/Pizzen" message="tns:PizzaService_Pizzen_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/PizzaService/PizzenResponse" message="tns:PizzaService_Pizzen_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Speichern">
       <wsdl:input wsaw:Action="http://tempuri.org/PizzaService/Speichern" message="tns:PizzaService_Speichern_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/PizzaService/SpeichernResponse" message="tns:PizzaService_Speichern_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="Bestellen">
+      <wsdl:input wsaw:Action="http://tempuri.org/PizzaService/Bestellen" message="tns:PizzaService_Bestellen_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/PizzaService/BestellenResponse" message="tns:PizzaService_Bestellen_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Bestellungen">
+      <wsdl:input wsaw:Action="http://tempuri.org/PizzaService/Bestellungen" message="tns:PizzaService_Bestellungen_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/PizzaService/BestellungenResponse" message="tns:PizzaService_Bestellungen_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AlleBestellungen">
+      <wsdl:input wsaw:Action="http://tempuri.org/PizzaService/AlleBestellungen" message="tns:PizzaService_AlleBestellungen_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/PizzaService/AlleBestellungenResponse" message="tns:PizzaService_AlleBestellungen_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_PizzaService" type="tns:PizzaService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="Alle">
-      <soap:operation soapAction="http://tempuri.org/PizzaService/Alle" style="document" />
+    <wsdl:operation name="Pizzen">
+      <soap:operation soapAction="http://tempuri.org/PizzaService/Pizzen" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -42,6 +72,33 @@
     </wsdl:operation>
     <wsdl:operation name="Speichern">
       <soap:operation soapAction="http://tempuri.org/PizzaService/Speichern" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bestellen">
+      <soap:operation soapAction="http://tempuri.org/PizzaService/Bestellen" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bestellungen">
+      <soap:operation soapAction="http://tempuri.org/PizzaService/Bestellungen" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlleBestellungen">
+      <soap:operation soapAction="http://tempuri.org/PizzaService/AlleBestellungen" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

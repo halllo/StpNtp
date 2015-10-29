@@ -98,6 +98,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\PizzaService\Pizza.Frontend.Verwaltung.PizzaService.BestellungEntity.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\PizzaService\Pizza.Frontend.Verwaltung.PizzaService.PizzaEntity.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
